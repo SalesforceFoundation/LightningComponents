@@ -44,3 +44,32 @@ In the example use cases below, we'll assume that there is an 'autocomplete' com
 
 - Coming Soon
 - See Source Tree Draft Document Here: https://salesforce.quip.com/aFkgA62paWeh
+
+### As a developer, I want to use a component that I have not used before.
+**Add a new remote**
+
+1. Right Click Remotes Menu in the sidebar
+2. [Image: file:///-/blob/HJOAAAPcwl5/l_NFClTBFcQgxWl2PBEE7w]
+3. Enter a name and the remote URL:
+    1. [Image: file:///-/blob/HJOAAAPcwl5/TQoA67D5OIT8W7FocDTKvw]
+4. You should see the new remote added to the list in this window:
+    1. [Image: file:///-/blob/HJOAAAPcwl5/h-Ia9RMYGz7mWMqelAgqiQ]
+5. See the new remote in the list
+6. [Image: file:///-/blob/HJOAAAPcwl5/HvwtssM5X0BU2OMlRrcxAw]
+
+**Fetch the new remote:**
+
+1. [Image: file:///-/blob/HJOAAAPcwl5/-pKQtfU2-rYUHGKsknytNA]
+
+**Merge lightningcomponents/autocomplete (or your desired component) into your working branch**
+
+1. [Image: file:///-/blob/HJOAAAPcwl5/jcGTX1lTigZTnqEn5BMRRg]
+    1. In some cases you may need to manually pull the remote branch (in this case autocomplete) into your working branch as seen in this screenshot:
+    2. [Image: file:///-/blob/HJOAAAPcwl5/GJ-BRb0y-4fSdgo4J1FQKw]
+
+**Deploy Metadata to your development org**
+
+1. [Image: file:///-/blob/HJOAAAPcwl5/ebyX5379cXfsYSSN8tE3Pw]
+
+
+
