@@ -45,31 +45,29 @@ In the example use cases below, we'll assume that there is an 'autocomplete' com
 - Coming Soon
 - See Source Tree Draft Document Here: https://salesforce.quip.com/aFkgA62paWeh
 
+
 ### As a developer, I want to use a component that I have not used before.
 **Add a new remote**
 
 1. Right Click Remotes Menu in the sidebar
-    1.[Image: https://salesforce.quip.com/-/blob/HJOAAAPcwl5/l_NFClTBFcQgxWl2PBEE7w]
+    1.![Adding New remote](https://cloud.githubusercontent.com/assets/4258978/21665089/73d38858-d29f-11e6-8ff1-18f714726aee.png)
 3. Enter a name and the remote URL:
-    1. [Image: https://salesforce.quip.com/-/blob/HJOAAAPcwl5/TQoA67D5OIT8W7FocDTKvw]
+    1. ![Enter remote URL](https://cloud.githubusercontent.com/assets/4258978/21665128/a03b3d0a-d29f-11e6-84c4-c7174f0c8b7a.png)
 4. You should see the new remote added to the list in this window:
-    1. [Image: https://salesforce.quip.com/-/blob/HJOAAAPcwl5/h-Ia9RMYGz7mWMqelAgqiQ]
+    1. ![Note the new Remote](https://cloud.githubusercontent.com/assets/4258978/21665130/a8335df8-d29f-11e6-87e3-fd009fb8464b.png)
 5. See the new remote in the list
-6. [Image: https://salesforce.quip.com/-/blob/HJOAAAPcwl5/HvwtssM5X0BU2OMlRrcxAw]
+6. ![See new remote listed](https://cloud.githubusercontent.com/assets/4258978/21665136/b2b8efb8-d29f-11e6-9716-24433558675d.png)
 
 **Fetch the new remote:**
 
-1. [Image: https://salesforce.quip.com/-/blob/HJOAAAPcwl5/-pKQtfU2-rYUHGKsknytNA]
+1. ![Fetch new remote](https://cloud.githubusercontent.com/assets/4258978/21665139/b933c732-d29f-11e6-8434-b675cc4dcc28.png)
 
 **Merge lightningcomponents/autocomplete (or your desired component) into your working branch**
 
-1. [Image: https://salesforce.quip.com/-/blob/HJOAAAPcwl5/jcGTX1lTigZTnqEn5BMRRg]
+1. ![Pull remote branch into local repo](https://cloud.githubusercontent.com/assets/4258978/21665285/8447286a-d2a0-11e6-9ba8-6b852448f9ac.png)
     1. In some cases you may need to manually pull the remote branch (in this case autocomplete) into your working branch as seen in this screenshot:
-    2. [Image: https://salesforce.quip.com/-/blob/HJOAAAPcwl5/GJ-BRb0y-4fSdgo4J1FQKw]
+    2. ![Manual Pull](https://cloud.githubusercontent.com/assets/4258978/21665159/e05c6c24-d29f-11e6-969b-b91fafe4a22b.png)
 
 **Deploy Metadata to your development org**
 
-1. [Image: https://salesforce.quip.com/-/blob/HJOAAAPcwl5/ebyX5379cXfsYSSN8tE3Pw]
-
-
-
+1. ![Deploy Metadata](https://cloud.githubusercontent.com/assets/4258978/21665205/114d5b5e-d2a0-11e6-97d2-4064253c7daa.png
