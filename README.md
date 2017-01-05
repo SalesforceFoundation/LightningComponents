@@ -41,7 +41,6 @@ In the example use cases below, we'll assume that there is an 'autocomplete' com
     git checkout dev    # you likely do not want to commit other work to this branch, so don't forget to switch batch to main line!
     
 ## Examples Using Source Tree
-- See Source Tree Draft Document Here: https://salesforce.quip.com/aFkgA62paWeh
 
 ### As a developer, I want to use a component that I have not used before.
 1. **Add a new remote**
