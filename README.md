@@ -49,7 +49,7 @@ In the example use cases below, we'll assume that there is an 'autocomplete' com
 **Add a new remote**
 
 1. Right Click Remotes Menu in the sidebar
-2. [Image: file:///-/blob/HJOAAAPcwl5/l_NFClTBFcQgxWl2PBEE7w]
+    1.[Image: file:///-/blob/HJOAAAPcwl5/l_NFClTBFcQgxWl2PBEE7w]
 3. Enter a name and the remote URL:
     1. [Image: file:///-/blob/HJOAAAPcwl5/TQoA67D5OIT8W7FocDTKvw]
 4. You should see the new remote added to the list in this window:
