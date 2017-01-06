@@ -32,7 +32,7 @@ In the example use cases below, we'll assume that there is an 'autocomplete' com
 ### As a developer, I want to make changes to a component locally and share those changes with other developers
 
     git fetch lightningcomponents
-    git checkout -b feature/my-autocomplete-update lightningcomponents/autocomplete/master
+    git checkout -b feature/my-autocomplete-update lightningcomponents/autocomplete/feature/new-feature-name
     <edit some files>
     git add <new/modified files>
     git commit -m "Adding a new feature to autocomplete component"
