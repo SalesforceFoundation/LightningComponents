@@ -12,27 +12,27 @@ In the example use cases below, we'll assume that there is an 'autocomplete' com
 
     git remote add lightningcomponents git@github.com:SalesforceFoundation/LightningComponents.git
     git fetch lightningcomponents
-    git merge lightningcomponents/autocomplete/master
+    git merge --no-ff --allow-unrelated-histories -X theirs lightningcomponents/autocomplete
 
 ### As a developer, I want to see how my copy of a component differs from the latest version of the component
 
     git fetch lightningcomponents
-    git diff HEAD...lightningcomponents/autocomplete/master
+    git diff HEAD...lightningcomponents/autocomplete
 
 ### As a developer, I want to retrieve the latest updates to a component (and I have no conflicting local modifications)
 
     git fetch lightningcomponents
-    git merge lightningcomponents/autocomplete/master
+    git merge lightningcomponents/autocomplete
 
 ### As a developer, I want to retrieve the latest updates to a component (and I want to overwrite my local modifications)
 
     git fetch lightningcomponents
-    git merge -s recursive -X theirs lightningcomponents/autocomplete/master
+    git merge -s recursive --allow-unrelated-histories -X theirs lightningcomponents/autocomplete 
 
 ### As a developer, I want to make changes to a component locally and share those changes with other developers
 
     git fetch lightningcomponents
-    git checkout -b autocomplete/feature/my-autocomplete-update lightningcomponents/autocomplete/master
+    git checkout -b autocomplete/feature/my-autocomplete-update lightningcomponents/autocomplete
     <edit some files>
     git add <new/modified files>
     git commit -m "Adding a new feature to autocomplete component"
