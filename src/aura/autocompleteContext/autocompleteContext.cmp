@@ -1,0 +1,17 @@
+<aura:component extends="ui:actionMenuItem">
+    <aura:attribute name="label" type="String" required="true" access="public"/>
+    <aura:attribute name="context" type="String" required="false" access="public"/>
+    <aura:attribute name="iconName" type="String" required="false" access="public"/>
+    <aura:attribute name="selected" type="Boolean" default="false" access="public"/>
+
+    <aura:set attribute="class" value="slds-dropdown__item"/>
+
+    <aura:method name="setFocus" action="{!c.setFocus}"/>
+    <aura:method name="select" action="{!c.select}"/>
+
+    <span class="slds-truncate">
+        <lightning:icon iconName="{!v.iconName}" size="small"/>
+        <span class="slds-m-left--small">{!v.label}</span>
+    </span>
+
+</aura:component>

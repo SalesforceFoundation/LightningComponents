@@ -1,0 +1,35 @@
+<aura:component extensible="true">
+    <aura:attribute name="value" type="Object" required="true" access="public"/>
+    <aura:attribute name="displayValue" type="String" access="public"/>
+    <aura:attribute name="iconName" type="String" access="public"/>
+    <aura:attribute name="iconAlternativeText" type="String" access="public"/>
+    <aura:attribute name="imageUrl" type="String" access="public"/>
+
+    <aura:registerEvent name="optionSelected" type="c:autocompleteSelectListOption"/>
+
+    <li role="presentation" class="slds-lookup__item">
+        <a href="javascript:void(0);" onclick="{!c.handleClick}">
+            <div class="slds-media slds-hint-parent">
+
+                <aura:if isTrue="{!!empty(v.iconName)}">
+                    <div class="slds-media__figure">
+                        <lightning:icon iconName="{!v.iconName}" class="slds-icon--small" size="small"/>
+                    </div>
+                </aura:if>
+
+                <aura:if isTrue="{!!empty(v.imageUrl)}">
+                    <div class="slds-media__figure">
+                        <span class="slds-avatar slds-avatar--x-small slds-avatar--circle slds-m-right--xx-small">
+                            <img src="{!v.imageUrl}" alt="" />
+                        </span>
+                    </div>
+                </aura:if>
+
+                <div class="slds-media__body">
+                    <div class="slds-lookup__result-text">{!v.displayValue}</div>
+                </div>
+            </div>
+        </a>
+    </li>
+
+</aura:component>

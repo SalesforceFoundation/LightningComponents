@@ -1,0 +1,54 @@
+<aura:component >
+    <aura:attribute name="values" type="Map[]" default="[]" access="public"/>
+    <aura:attribute name="isMulti" type="Boolean" default="false" access="public"/>
+
+    <aura:attribute name="placeholder" type="String" default="" access="public"/>
+    <aura:attribute name="dataProvider" type="Aura.Component[]" required="true" access="public"/>
+    <aura:attribute name="itemVar" default="item" type="String" access="public"/>
+    <aura:attribute name="isListVisible" default="false" type="Boolean" access="public"/>
+    <aura:attribute name="contextOptions" type="Aura.Component[]" access="public"/>
+    <aura:attribute name="listFooter" type="Aura.Component[]" description="A facet below the rendered list, for use as a list footer" access="public"/>
+    <aura:attribute name="showListHeader" type="Boolean" default="true" description="Indicates whether the listHeader is visible. The default is true." access="public"/>
+    <aura:attribute name="showListFooter" type="Boolean" default="true" description="Indicates whether the listFooter is visible. The default is true." access="public"/>
+    <aura:attribute name="loadingIndicator" type="Aura.Component[]" description="Content to be shown while the list is loading" access="public"/>
+    <aura:attribute name="showLoadingIndicator" type="Boolean" default="false" access="public"/>
+    <aura:attribute name="emptyListContent" type="Aura.Component[]" description="Content to be shown if the list is empty" access="public"/>
+
+    <aura:attribute name="itemTemplate" type="Aura.ComponentDefRef[]" access="public">
+        <c:autocompleteOption value="{!item}" displayValue="{!item.displayValue}" iconName="{!item.iconName}" iconAlternativeText="{!item.iconAlternativeText}" imageUrl="{!item.imageUrl}"/>
+    </aura:attribute>
+
+    <aura:handler name="optionSelected" event="c:autocompleteSelectListOption" action="{!c.handleItemSelected}" />
+    <aura:handler name="lookupPillRemove" event="c:lookupPillRemove" action="{!c.handlePillRemove}"/>
+
+    <div class="slds-box" style="padding: 0px">
+        <aura:if isTrue="{!!empty(v.values)}">
+            <div class="slds-p-around--xx-small">
+                <aura:iteration items="{!v.values}" var="val" indexVar="i">
+                    <c:lookupPill index="{!i}"
+                                        label="{!val.displayValue}"
+                                        title="{!val.display}"
+                                        iconName="{!val.iconName}"
+                                        iconAlternativeText="{!val.iconAlternativeText}"
+                                        imageUrl="{!val.imageUrl}"
+                                        />
+                </aura:iteration>
+            </div>
+        </aura:if>
+        <div class="{!'slds-p-around--xx-small' + (empty(v.values) ? '' : ' slds-border--top') + (v.isMulti || empty(v.values) ? '' : ' slds-hide')}">
+            <c:autocomplete placeholder="{!v.placeholder}"
+                            dataProvider="{!v.dataProvider}"
+                            itemVar="{!v.itemVar}"
+                            isListVisible="{!v.isListVisible}"
+                            contextOptions="{!v.contextOptions}"
+                            itemTemplate="{!v.itemTemplate}"
+                            listFooter="{!v.listFooter}"
+                            showListHeader="{!v.showListHeader}"
+                            showListFooter="{!v.showListFooter}"
+                            loadingIndicator="{!v.loadingIndicator}"
+                            showLoadingIndicator="{!v.showLoadingIndicator}"
+                            emptyListContent="{!v.emptyListContent}"
+                            />
+        </div>
+    </div>
+</aura:component>

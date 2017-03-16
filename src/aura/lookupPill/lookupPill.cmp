@@ -1,0 +1,29 @@
+<aura:component >
+    <aura:attribute name="label" type="String" required="true" access="public"/>
+    <aura:attribute name="index" type="Integer" required="true" access="public"/>
+    <aura:attribute name="title" type="String" default="" access="public"/>
+    <aura:attribute name="iconName" type="String" access="public"/>
+    <aura:attribute name="iconAlternativeText" type="String" access="public"/>
+    <aura:attribute name="imageUrl" type="String" access="public"/>
+
+    <aura:registerEvent name="lookupPillRemove" type="c:lookupPillRemove"/>
+
+    <span class="slds-pill slds-p-around--xx-small">
+
+        <aura:if isTrue="{!!empty(v.iconName)}">
+            <lightning:icon iconName="{!v.iconName}" class="slds-pill__icon_container" alternativeText="{!v.iconAlternativeText}"/>
+        </aura:if>
+
+        <aura:if isTrue="{!!empty(v.imageUrl)}">
+            <span class="slds-avatar slds-avatar--x-small slds-avatar--circle slds-m-right--xx-small">
+                <img src="{!v.imageUrl}" alt="" />
+            </span>
+        </aura:if>
+
+        <span class="slds-pill__label" title="{!v.title}">
+            {!v.label}
+        </span>
+
+        <lightning:buttonIcon class="slds-pill__remove" variant="bare" iconName="utility:close" alternativeText="Remove" onclick="{!c.handleRemove}"/>
+    </span>
+</aura:component>

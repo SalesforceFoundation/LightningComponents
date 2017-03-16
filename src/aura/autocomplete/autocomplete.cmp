@@ -1,0 +1,134 @@
+<aura:component >
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler name="optionSelected" event="c:autocompleteSelectListOption" action="{!c.handleOptionSelected}" />
+    <aura:handler name="menuSelect" event="ui:menuSelect" action="{!c.handleMenuSelect}"/>
+
+    <aura:attribute name="items" type="Object[]" default="[]" access="private"/>
+    <aura:attribute name="keyword" type="String" access="private"/>
+    <aura:attribute name="inputFocused" type="Boolean" default="false" access="private"/>
+    <aura:attribute name="placeholder" type="String" default="" access="public"/>
+    <aura:attribute name="label" type="String" default="" access="public"/>
+    <aura:attribute name="displayValue" type="String" default="" access="public"/>
+    <aura:attribute name="value" type="Map" access="public"/>
+    <aura:attribute name="dataProvider" type="Aura.Component[]" required="true" access="public"/>
+    <aura:attribute name="itemVar" default="item" type="String" access="public"/>
+    <aura:attribute name="isListVisible" default="false" type="Boolean" access="public"/>
+    <aura:attribute name="idDataCallback" type="Integer" default="0" access="private" />
+
+    <aura:attribute name="contextOptions" type="Aura.Component[]" access="public"/>
+    <aura:attribute name="currentContextValue" type="String" default="" access="private"/>
+    <aura:attribute name="currentContextLabel" type="String" default="" access="private"/>
+    <aura:attribute name="currentContextIconName" type="String" default="" access="private"/>
+    <aura:attribute name="showContextMenu" type="Boolean" default="false" access="private"/>
+
+    <aura:method name="clearList" action="{!c.clearList}" access="public" />
+
+    <aura:attribute name="itemTemplate" type="Aura.ComponentDefRef[]" access="public">
+        <c:autocompleteOption value="{!item}" displayValue="{!item.displayValue}" iconName="{!item.iconName}" iconAlternativeText="{!item.iconAlternativeText}" imageUrl="{!item.imageUrl}"/>
+    </aura:attribute>
+
+    <aura:attribute name="listFooter" type="Aura.Component[]" description="A facet below the rendered list, for use as a list footer" access="public"/>
+    <aura:attribute name="showListHeader" type="Boolean" default="true" description="Indicates whether the listHeader is visible. The default is true." access="public"/>
+    <aura:attribute name="showListFooter" type="Boolean" default="true" description="Indicates whether the listFooter is visible. The default is true." access="public"/>
+    <aura:attribute name="loadingIndicator" type="Aura.Component[]" description="Content to be shown while the list is loading" access="public"/>
+    <aura:attribute name="showLoadingIndicator" type="Boolean" default="false" access="public"/>
+    <aura:attribute name="emptyListContent" type="Aura.Component[]" description="Content to be shown if the list is empty" access="public"/>
+
+    <div class="slds" aura:id="autocomplete">
+        <div
+             class="slds-form-element slds-lookup"
+             data-select="single"
+             data-scope="single"
+             data-typeahead="true">
+
+            <aura:if isTrue="{!!empty(v.label)}">
+                <label class="slds-form-element__label">{!v.label}</label>
+            </aura:if>
+
+
+            <div class="slds-form-element__control slds-grid">
+
+                <aura:if isTrue="{!v.contextOptions.length > 0}">
+
+                    <div class="{!'slds-dropdown--trigger slds-dropdown-trigger--click slds-align-middle slds-m-left--xx-small slds-shrink-none ' + (v.showContextMenu ? 'slds-is-open' : '')}">
+
+                        <aura:if isTrue="{!!empty(v.currentContextIconName)}">
+                            <lightning:icon iconName="{!v.currentContextIconName}" size="small" class="slds-m-right--xx-small"/>
+                        </aura:if>
+
+                        <aura:if isTrue="{!v.contextOptions.length > 1}">
+                            <lightning:buttonIcon iconName="utility:down" size="small" variant="bare" alternativeText="Select object to search in" onclick="{!c.toggleContextMenu}"/>
+
+                            <div class="slds-dropdown slds-dropdown--left">
+                                <ul class="slds-dropdown__list" role="menu">
+                                    <aura:iteration items="{!v.contextOptions}" var="contextOption">
+                                        {!contextOption}
+                                    </aura:iteration>
+                                </ul>
+                            </div>
+                        </aura:if>
+
+                    </div>
+
+                </aura:if>
+
+
+                <div class="slds-input-has-icon slds-input-has-icon--right slds-grow">
+
+                    <lightning:icon iconName="utility:search" class="slds-input__icon" size="x-small"/>
+
+                    <ui:inputText aura:id="input"
+                                  class="slds-lookup__search slds-input slds-input--bare"
+                                  placeholder="{!v.placeholder}"
+                                  value="{!v.displayValue}"
+                                  updateOn="keyup"
+                                  />
+
+                </div>
+
+            </div>
+
+            <div
+                 class="{!'slds-lookup__menu' + (v.isListVisible ? ' slds-show' : ' slds-hide')}"
+                 role="listbox"
+                 aura:id="list"
+                 tabindex="-1"
+                 onfocusin="{!c.handleListFocus}"
+                 onfocusout="{!c.handleListBlur}"
+                 onfocus="{!c.handleListFocus}"
+                 onblur="{!c.handleListBlur}">
+
+                <ul aura:id="ullist" class="slds-lookup__list" role="presentation">
+
+                    <aura:if isTrue="{!v.showListHeader}">
+                        <div class="slds-lookup__item">
+                            <span>
+                                <lightning:icon iconName="utility:search" class="slds-icon-text-default" size="x-small"/>
+                                &quot;{!v.keyword}&quot; in {!if(!empty(v.currentContextLabel), v.currentContextLabel, '')}
+                            </span>
+                        </div>
+                    </aura:if>
+
+                    <aura:if isTrue="{!v.showLoadingIndicator}">
+                        {!v.loadingIndicator}
+                    </aura:if>
+
+                    <aura:if isTrue="{!!empty(v.items)}">
+                        <aura:iteration aura:id="iter" items="{!v.items}" var="{!v.itemVar}" body="{!v.itemTemplate}"/>
+                        <aura:set attribute="else">
+                            {!v.emptyListContent}
+                        </aura:set>
+                    </aura:if>
+
+                    <aura:if isTrue="{!v.showListFooter}">
+                        {!v.listFooter}
+                    </aura:if>
+
+                </ul>
+
+            </div>
+
+        </div>
+    </div>
+
+</aura:component>
